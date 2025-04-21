@@ -24,7 +24,11 @@ jobs:
       - name: SSH into EC2 and deploy
         run: |
           ssh -i ~/.ssh/id_ed25519 deployer@18.194.17.3 << 'EOF'
-            cd ~/drunken-banana
+            cd ~
+            if [ ! -d "/home/deployer/drunken-banana" ]; then
+              git clone https://github.com/VMLVaske/drunken-banana.git
+            fi
+            cd /home/deployer/drunken-banana
             git reset --hard HEAD
             git pull
             chmod +x setup/setup.sh
