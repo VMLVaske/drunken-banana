@@ -17,7 +17,7 @@ jobs:
       - name: Setup SSH key
         run: |
           mkdir -p ~/.ssh
-          printf "%s" "${{ secrets.EC2_DEPLOYER_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
+          printf "%s" "${{ secrets.DEPLOYER_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H 18.194.17.3 >> ~/.ssh/known_hosts
 
