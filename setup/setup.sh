@@ -2,6 +2,9 @@
 
 set -e
 
+touch /var/log/ghost-setup.log
+chown ubuntu:ubuntu /var/log/ghost-setup.log
+
 cd "$(dirname "$0")"
 
 echo "[+] Starting Ghost via Docker Compose..."
