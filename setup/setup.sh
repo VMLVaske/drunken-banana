@@ -36,6 +36,4 @@ fi
 # Mailing out Metadata
 sudo apt-get install -y mailutils
 
-Internet Site
-
-echo "[✓] Setup complete."
+echo "[✓] Setup complete." >>$LOG_FILE
