@@ -22,6 +22,7 @@ if ! id -u deployer >/dev/null 2>&1; then
     echo "[+] Creating deployer user..."
     sudo adduser --disabled-password --gecos "" deployer
     sudo usermod -aG sudo deployer
+    sudo usermod -aG docker deployer
     sudo mkdir -p /home/deployer/.ssh
     sudo cp /home/ubuntu/.ssh/authorized_keys /home/deployer/.ssh/authorized_keys
     sudo chown -R deployer:deployer /home/deployer/.ssh
