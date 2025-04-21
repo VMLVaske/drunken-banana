@@ -2,8 +2,8 @@
 
 set -e
 
-LOG_FILE="/home/deployer/ghost-setup.log"
-LOG_DIR="/home/deployer/logs"
+LOG_FILE="$HOME/ghost-setup.log"
+LOG_DIR="$HOME/logs"
 mkdir -p "$LOG_DIR"
 
 # Wait until cloud-init / apt is done
@@ -34,7 +34,7 @@ fi
 
 # Setup backup cronjob
 echo "[+] Setting up backup cronjob..." >>$LOG_FILE
-sudo cp /home/deployer/drunken-banana/setup/ghost-backup.sh /usr/local/bin/ghost-backup
+sudo cp $HOME/drunken-banana/setup/ghost-backup.sh /usr/local/bin/ghost-backup
 sudo chmod +x /usr/local/bin/ghost-backup
 
 # Add cronjob if it doesn't already exist
