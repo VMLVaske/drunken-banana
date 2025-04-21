@@ -1,0 +1,14 @@
+version: "3.8"
+
+services:
+  ghost:
+    image: ghost:5-alpine
+    container_name: ghost
+    restart: always
+    ports:
+      - "2368:2368"
+    volumes:
+      - ./ghost-content:/var/lib/ghost/content
+    environment:
+      # Change these based on your needs
+      url: http://52.29.120.211:2368
