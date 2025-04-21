@@ -1,1 +1,5 @@
 /local
+
+.env
+/terraform/.env
+/terraform/.terraform
