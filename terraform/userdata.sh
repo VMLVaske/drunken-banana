@@ -10,6 +10,17 @@ USER=ubuntu
 REPO_URL="https://github.com/VMLVaske/drunken-banana.git"
 TARGET_DIR="/home/$USER/drunken-banana"
 
+# Create deployer user and inject SSH key
+if ! id -u deployer >/dev/null 2>&1; then
+    adduser --disabled-password --gecos "" deployer
+    usermod -aG sudo deployer
+    mkdir -p /home/deployer/.ssh
+    echo "${deployer_public_key}" >/home/deployer/.ssh/authorized_keys
+    chown -R deployer:deployer /home/deployer/.ssh
+    chmod 700 /home/deployer/.ssh
+    chmod 600 /home/deployer/.ssh/authorized_keys
+fi
+
 # Update system
 apt-get update -y
 apt-get install -y \
