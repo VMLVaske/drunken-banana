@@ -17,3 +17,7 @@ output "ssh_command" {
   description = "Convenient SSH command to connect to the instance"
   value       = "ssh -i ~/.ssh/ghost-key.pem ubuntu@${aws_instance.ghost_ec2.public_ip}"
 }
+
+output "public_ip" {
+  value = aws_eip.ghost.public_ip
+}

@@ -81,3 +81,8 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"] # Canonical
 }
+
+resource "aws_eip" "ghost" {
+  instance = aws_instance.ghost_ec2.id
+  vpc      = true
+}
