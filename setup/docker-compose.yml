@@ -11,3 +11,4 @@ services:
       - ./ghost-content:/var/lib/ghost/content
     environment:
       url: http://localhost
+      database__client: sqlite3
