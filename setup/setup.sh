@@ -23,14 +23,15 @@ sudo cp /home/ubuntu/drunken-banana/setup/ghost-backup.sh /usr/local/bin/ghost-b
 sudo chmod +x /usr/local/bin/ghost-backup
 
 # Add cronjob if it doesn't already exist
-(crontab -l 2>/dev/null | grep -q ghost-backup) ||
+if ! crontab -l 2>/dev/null | grep -q ghost-backup; then
     (
-        crontab -l 2>/dev/null
         # Runs Cronjob every night at 3:00 AM
         #echo "0 3 * * * /usr/local/bin/ghost-backup >> $LOG_DIR/ghost-backup.log 2>&1"
         #For Debugging - run Cronjob every 15 mins
+        crontab -l 2>/dev/null
         echo "*/15 * * * * /usr/local/bin/ghost-backup >> $LOG_DIR/ghost-backup.log 2>&1"
     ) | crontab -
+fi
 
 # Mailing out Metadata
 sudo apt-get install -y mailutils
