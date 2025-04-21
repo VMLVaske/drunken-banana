@@ -35,3 +35,8 @@ variable "backup_email" {
   description = "Email address for Ghost backup notifications"
   type        = string
 }
+
+variable "deployer_public_key" {
+  type        = string
+  description = "Public SSH key for the deployer user"
+}
