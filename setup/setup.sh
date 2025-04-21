@@ -18,7 +18,10 @@ sudo chmod +x /usr/local/bin/ghost-backup
 (crontab -l 2>/dev/null | grep -q ghost-backup) ||
     (
         crontab -l 2>/dev/null
-        echo "0 3 * * * /usr/local/bin/ghost-backup >> /var/log/ghost-backup.log 2>&1"
+        # Runs Cronjob every night at 3:00 AM
+        #echo "0 3 * * * /usr/local/bin/ghost-backup >> /var/log/ghost-backup.log 2>&1"
+        #For Debugging - run Cronjob every 15 mins
+        */15 * * * * /usr/local/bin/ghost-backup >>/var/log/ghost-backup.log 2>&1
     ) | crontab -
 
 # Mailing out Metadata
