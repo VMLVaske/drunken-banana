@@ -8,12 +8,12 @@ BACKUP_DIR="/backup"
 mkdir -p $BACKUP_DIR
 
 # Create log dir if it doesn't exist
-LOG_DIR="/home/ubuntu/logs"
+LOG_DIR="/home/deployer/logs"
 mkdir -p "$LOG_DIR"
 
 # Define source + destination
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
-SRC="/home/ubuntu/drunken-banana/setup/ghost-content"
+SRC="/home/deployer/drunken-banana/setup/ghost-content"
 DEST="$BACKUP_DIR/ghost-content-backup-$TIMESTAMP.tar.gz"
 SUMMARY="$BACKUP_DIR/backup-summary-$TIMESTAMP.log"
 

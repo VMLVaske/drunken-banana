@@ -2,8 +2,8 @@
 
 set -e
 
-LOG_FILE="/home/ubuntu/ghost-setup.log"
-LOG_DIR="/home/ubuntu/logs"
+LOG_FILE="/home/deployer/ghost-setup.log"
+LOG_DIR="/home/deployer/logs"
 mkdir -p "$LOG_DIR"
 
 # Wait until cloud-init / apt is done
@@ -32,10 +32,9 @@ else
     echo "[*] Deployer user already exists, skipping creation."
 fi
 
-
 # Setup backup cronjob
 echo "[+] Setting up backup cronjob..." >>$LOG_FILE
-sudo cp /home/ubuntu/drunken-banana/setup/ghost-backup.sh /usr/local/bin/ghost-backup
+sudo cp /home/deployer/drunken-banana/setup/ghost-backup.sh /usr/local/bin/ghost-backup
 sudo chmod +x /usr/local/bin/ghost-backup
 
 # Add cronjob if it doesn't already exist
