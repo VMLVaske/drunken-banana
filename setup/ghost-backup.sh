@@ -7,6 +7,10 @@ EMAIL=${BACKUP_EMAIL:-"fallback@example.com"}
 BACKUP_DIR="/backup"
 mkdir -p $BACKUP_DIR
 
+# Create log dir if it doesn't exist
+LOG_DIR="/home/ubuntu/logs"
+mkdir -p "$LOG_DIR"
+
 # Define source + destination
 TIMESTAMP=$(date +"%Y-%m-%d_%H-%M-%S")
 SRC="/home/ubuntu/drunken-banana/setup/ghost-content"
@@ -31,4 +35,4 @@ echo "Status: ✅ Successful" >>"$SUMMARY"
 mail -s "Ghost Backup - $TIMESTAMP" "$EMAIL" <"$SUMMARY"
 
 # Log summary
-echo "[✓] Backup complete: $DEST"
+echo "[✓] Backup complete: $DEST" >>"$LOG_DIR/ghost-backup.log"
