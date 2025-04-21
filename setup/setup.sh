@@ -38,6 +38,10 @@ while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do
     echo "Waiting for apt lock (mailutils)..."
     sleep 5
 done
-sudo apt-get install -y mailutils
+# Preconfigure Postfix so it doesn't block with an interactive prompt
+echo "postfix postfix/mailname string your-domain.com" | sudo debconf-set-selections
+echo "postfix postfix/main_mailer_type string 'Local only'" | sudo debconf-set-selections
+
+sudo DEBIAN_FRONTEND=noninteractive apt-get install -y mailutils
 
 echo "[✓] Setup complete." >>$LOG_FILE
