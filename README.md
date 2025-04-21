@@ -1,34 +1,17 @@
-# drunken-banana
-
-
-
-
-
-Also remember to update the IP address of the EC instance after redeploying it, i.e. in deploy.yml for github workflows. 
-
-After redeploy: 
-ssh into the new instance, add ssh key for github action to authorized keys.
-then change the IP of the instance in deployment.yml for the github workflow.
-commit + push for workflow to get triggered.
-
 # Ghost Blog on EC2 (with Terraform + GitHub Actions)
 
 This project provisions and deploys a production-ready Ghost blogging platform on an AWS EC2 instance using Terraform and GitHub Actions. It automates infrastructure creation, bootstraps the Ghost container, adds scheduled backups, and supports redeployment via CI/CD.
 
 ## ✅ Features Completed
 
-
-
 ## 🌟 Future Improvements
-
-
 
 ## 🎓 Lessons Learned
 
 Ghost uses MySQL by default; to switch to sqlite3 you need to specify `database_client`and `database_connection_filename`in the docker-compose.
 Without any dedicated mention, Ghost will default back to MySQL continuously, even when deleting the content dir and the config.json, and crash the container hard.
 
-Docker Compose must use url=http://localhost unless you're behind NGINX
+Docker Compose must use "url=http://localhost" unless you're behind NGINX
 
 Interactive apt installs like postfix must be pre-seeded using debconf-set-selections, because otherwise the gh actions will get stuck in waiting mode, as the postfix dialogue never closes.
 This gets ugly if you encounter a deadlock situation, in which you'll either have to restart the entire EC2 or remove the dangling hooks manually.
@@ -37,7 +20,6 @@ Elastic IPs will change unless declared in Terraform and attached as a separate 
 
 GitHub Actions need a stable SSH user and key—this required generating and base64-encoding a separate deploy key.
 On mac, this needs to be done with openssl ;)
-
 
 ## 📃 MISC Notes
 
@@ -59,10 +41,10 @@ Monitor your AWS billing dashboard if unsure
 * Clones this repo to /home/ubuntu/drunken-banana
 * Creates a deployer user with SSH access using a Terraform variable
 * On any push to main, GitHub Actions:
-** SSHes into the instance as deployer
-** Pulls the latest repo changes
-** Re-runs setup.sh to restart Ghost and cronjobs
-** Backups run every 15 minutes (can be changed to nightly), creating .tar.gz files and emailing metadata to the configured address.
+* * SSHes into the instance as deployer
+* * Pulls the latest repo changes
+* * Re-runs setup.sh to restart Ghost and cronjobs
+* * Backups run every 15 minutes (can be changed to nightly), creating .tar.gz files and emailing metadata to the configured address.
 
 ## 🧵 SSH Key Management
 
@@ -82,7 +64,7 @@ Add the result as a GitHub Secret, and keep the .pub version in terraform.tfvars
 ## 🚀 Deploy Your Own
 
 cp terraform.tfvars.example terraform.tfvars
-# Fill in your public key + deployer key + your preferred backup email address
+Fill in your public key + deployer key + your preferred backup email address
 terraform init
 terraform apply
 
