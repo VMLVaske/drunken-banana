@@ -25,6 +25,7 @@ jobs:
         run: |
           ssh -i ~/.ssh/id_ed25519 ubuntu@18.196.42.221 << 'EOF'
             cd ~/drunken-banana
+            git reset --hard HEAD
             git pull
             cd setup
             ./setup.sh
