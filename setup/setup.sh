@@ -15,7 +15,7 @@ done
 cd "$(dirname "$0")"
 
 echo "[+] Starting Ghost via Docker Compose..."
-sudp docker compose up -d
+sudo docker compose up -d
 
 # Create a deployer user with sudo rights (if not already present)
 if ! id -u deployer >/dev/null 2>&1; then
