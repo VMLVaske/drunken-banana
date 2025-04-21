@@ -57,7 +57,9 @@ resource "aws_instance" "ghost_ec2" {
   vpc_security_group_ids      = [aws_security_group.ghost_sg.id]
   associate_public_ip_address = true
 
-  user_data = file("${path.module}/userdata.sh")
+  user_data = templatefile("${path.module}/userdata.sh", {
+    backup_email = var.backup_email
+  })
 
   tags = {
     Name = "GhostBlogInstance"

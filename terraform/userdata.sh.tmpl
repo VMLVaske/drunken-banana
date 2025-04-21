@@ -3,8 +3,6 @@
 export DEBIAN_FRONTEND=noninteractive
 set -e
 
-echo 'export BACKUP_EMAIL="${backup_email}"' >>/etc/profile.d/backup-env.sh
-
 # Variables
 USER=ubuntu
 REPO_URL="https://github.com/VMLVaske/drunken-banana.git"

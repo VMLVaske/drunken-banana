@@ -30,3 +30,8 @@ variable "allowed_ssh_cidr" {
   type        = string
   default     = "0.0.0.0/0"
 }
+
+variable "backup_email" {
+  description = "Email address for Ghost backup notifications"
+  type        = string
+}

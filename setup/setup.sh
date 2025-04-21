@@ -21,4 +21,9 @@ sudo chmod +x /usr/local/bin/ghost-backup
         echo "0 3 * * * /usr/local/bin/ghost-backup >> /var/log/ghost-backup.log 2>&1"
     ) | crontab -
 
+# Mailing out Metadata
+sudo apt-get install -y mailutils
+
+Internet Site
+
 echo "[✓] Setup complete."
