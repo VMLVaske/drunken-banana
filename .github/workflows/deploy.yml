@@ -23,7 +23,7 @@ jobs:
 
       - name: SSH into EC2 and deploy
         run: |
-          ssh -i ~/.ssh/id_ed25519 ubuntu@18.194.17.3 << 'EOF'
+          ssh -i ~/.ssh/id_ed25519 deployer@18.194.17.3 << 'EOF'
             cd ~/drunken-banana
             git reset --hard HEAD
             git pull

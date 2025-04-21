@@ -17,6 +17,22 @@ cd "$(dirname "$0")"
 echo "[+] Starting Ghost via Docker Compose..."
 docker compose up -d
 
+# Create a deployer user with sudo rights (if not already present)
+if ! id -u deployer >/dev/null 2>&1; then
+    echo "[+] Creating deployer user..."
+    sudo adduser --disabled-password --gecos "" deployer
+    sudo usermod -aG sudo deployer
+    sudo mkdir -p /home/deployer/.ssh
+    sudo cp /home/ubuntu/.ssh/authorized_keys /home/deployer/.ssh/authorized_keys
+    sudo chown -R deployer:deployer /home/deployer/.ssh
+    sudo chmod 700 /home/deployer/.ssh
+    sudo chmod 600 /home/deployer/.ssh/authorized_keys
+    echo "[✓] Deployer user created."
+else
+    echo "[*] Deployer user already exists, skipping creation."
+fi
+
+
 # Setup backup cronjob
 echo "[+] Setting up backup cronjob..." >>$LOG_FILE
 sudo cp /home/ubuntu/drunken-banana/setup/ghost-backup.sh /usr/local/bin/ghost-backup
