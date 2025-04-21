@@ -34,6 +34,10 @@ if ! crontab -l 2>/dev/null | grep -q ghost-backup; then
 fi
 
 # Mailing out Metadata
+while sudo fuser /var/lib/dpkg/lock-frontend >/dev/null 2>&1; do
+    echo "Waiting for apt lock (mailutils)..."
+    sleep 5
+done
 sudo apt-get install -y mailutils
 
 echo "[✓] Setup complete." >>$LOG_FILE

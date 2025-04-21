@@ -27,6 +27,7 @@ jobs:
             cd ~/drunken-banana
             git reset --hard HEAD
             git pull
+            chmod +x setup/setup.sh
             cd setup
             ./setup.sh
           EOF
