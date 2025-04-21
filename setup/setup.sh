@@ -11,8 +11,8 @@ docker compose up -d
 
 # Setup backup cronjob
 echo "[+] Setting up backup cronjob..." >>$LOG_FILE
-cp /home/ubuntu/drunken-banana/setup/ghost-backup.sh /usr/local/bin/ghost-backup
-chmod +x /usr/local/bin/ghost-backup
+sudo cp /home/ubuntu/drunken-banana/setup/ghost-backup.sh /usr/local/bin/ghost-backup
+sudo chmod +x /usr/local/bin/ghost-backup
 
 # Add cronjob if it doesn't already exist
 (crontab -l 2>/dev/null | grep -q ghost-backup) ||
