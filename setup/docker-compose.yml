@@ -10,5 +10,4 @@ services:
     volumes:
       - ./ghost-content:/var/lib/ghost/content
     environment:
-      # Change these based on your needs
-      url: http://52.29.120.211:2368
+      url: http://localhost
