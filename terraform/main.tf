@@ -57,8 +57,9 @@ resource "aws_instance" "ghost_ec2" {
   vpc_security_group_ids      = [aws_security_group.ghost_sg.id]
   associate_public_ip_address = true
 
-  user_data = templatefile("${path.module}/userdata.sh", {
+  user_data = templatefile("${path.module}/userdata.sh.tmpl", {
     backup_email = var.backup_email
+    deployer_public_key  = var.deployer_public_key
   })
 
   tags = {
@@ -83,6 +84,11 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_eip" "ghost" {
-  instance = aws_instance.ghost_ec2.id
-  vpc      = true
+  vpc = true
+  depends_on = [aws_instance.ghost_ec2]
+}
+
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.ghost_ec2.id
+  allocation_id = aws_eip.ghost.id
 }
