@@ -19,11 +19,11 @@ jobs:
           mkdir -p ~/.ssh
           printf "%s" "${{ secrets.EC2_DEPLOY_KEY_B64 }}" | base64 -d > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          ssh-keyscan -H 18.194.17.3 >> ~/.ssh/known_hosts
+          ssh-keyscan -H 52.28.222.136 >> ~/.ssh/known_hosts
 
       - name: SSH into EC2 and deploy
         run: |
-          ssh -i ~/.ssh/id_ed25519 ubuntu@18.194.17.3 << 'EOF'
+          ssh -i ~/.ssh/id_ed25519 ubuntu@52.28.222.136 << 'EOF'
             cd ~/drunken-banana
             git reset --hard HEAD
             git pull
